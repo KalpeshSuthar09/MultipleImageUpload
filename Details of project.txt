@@ -1,0 +1,51 @@
+In this project we use react hook and react-dropzone library
+
+First create arrow function with the name of MuiltipleImaheupload name
+
+and than we create this code 
+
+const [images, setImages] = useState([]);
+  const [formData, setFormData] = useState({
+    description: ""
+  });
+
+to show to manage the state of selected images and images array holds the images and by setimage to update the state
+
+in next line of code how will manage the form data
+
+/*        */
+after this 
+
+const onDrop = useCallback((acceptedFiles) => {
+    setImages((prevImages) => [...prevImages, ...acceptedFiles]);
+  }, []);
+
+in this code we use usecallback hook to drop the images
+
+
+/*     */
+after this 
+const removeImage = (index) => {
+    setImages((prevImages) => prevImages.filter((_, i) => i !== index));
+  };
+
+in this code 
+we remove the images from images based on index
+
+const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
+in this code updating the description in form when user type some text
+
+
+/*             */ 
+
+const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    accept: "image/*",
+    multiple: true,
+  });
+this is the pre build code from the react dropzone library to manage the drag and drop side
+
